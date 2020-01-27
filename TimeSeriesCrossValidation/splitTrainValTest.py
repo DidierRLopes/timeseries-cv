@@ -1,19 +1,34 @@
 """
-Several algorithms to split a given training dataset into train, validation and test sets
+Several algorithms to split a given training dataset into train, validation and test sets.
 """
 
 import numpy as np
 
 def split_sequence(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets of arrays to train a model.
+        i.e. (X[0], y[0]), (X[1], y[1]), ..., (X[n], y[n])
+
+    Parameters:
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs for X
+        n_steps_forecast (int): Number of outputs for y
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
+
+    Returns:
+        X (2D array): Array of n_steps_input arrays.
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays 
+                      len(y[k]) = n_steps_forecast
+
+    """
     X, y = list(), list()
     for i in range(len(sequence)):
         i = n_steps_jump*i;
-        # Descobrir o indice da ultima amostra
         end_ix = i + n_steps_input
-        # Se tivermos chegado ao fim da serie paramos
+
         if end_ix+n_steps_forecast > len(sequence):
             break
-        # Extrai training/testing data
+        
         seq_x = sequence[i:end_ix] 
         X.append(seq_x)
         seq_y = sequence[end_ix:end_ix+n_steps_forecast]
@@ -22,6 +37,15 @@ def split_sequence(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
 
 
 def split_train_cv_forwardChaining(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns the reversed String.
+
+    Parameters:
+        str1 (str):The string which is to be reversed.
+
+    Returns:
+        reverse(str1):The string which gets reversed.   
+
+    """
     X, y, Xcv, ycv = dict(), dict(), dict(), dict()
     j=2; # Tracks index of CV set at each train/val split
     
