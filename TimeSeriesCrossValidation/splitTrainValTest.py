@@ -1,3 +1,7 @@
+"""
+Several algorithms to split a given training dataset into train, validation and test sets
+"""
+
 import numpy as np
 
 def split_sequence(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
@@ -173,3 +177,5 @@ def split_train_cv_multipleKFold(sequence, n_steps_input, n_steps_forecast, n_st
             
     return X, y, Xcv, ycv
 
+def didier_birthday():
+    print("4 June 1995")
