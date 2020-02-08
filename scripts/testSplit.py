@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.lines import Line2D
 
-from TimeSeriesCrossValidation.splitTrain import split_train
+#from TimeSeriesCrossValidation.splitTrain import split_train
 from TimeSeriesCrossValidation.splitTrainVal import *
 
 timeSeries = np.arange(31)
