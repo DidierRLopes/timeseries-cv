@@ -4,14 +4,15 @@ Several algorithms to split a given training dataset into train, validation and 
 
 import numpy as np
 
-def split_sequence(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
-    """ Returns sets of arrays to train a model.
-        i.e. (X[0], y[0]), (X[1], y[1]), ..., (X[n], y[n])
-
+def split_train(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets to train a model
+        i.e. (X[0], X[1], ..., X[n_steps_input]),  (y[n_steps_input+1], y[n_steps_input+2], ..., y[n_steps_input+n_steps_output]])
+        (X[n_steps_jump], ..., X[n_steps_jump+n_steps_input]),  (y[n_steps_jump+n_steps_input+1], ..., y[n_steps_jump+n_steps_input+n_steps_output]])
+    
     Parameters:
         sequence (array): Full training dataset
-        n_steps_input (int): Number of inputs for X
-        n_steps_forecast (int): Number of outputs for y
+        n_steps_input (int): Number of inputs X used at each training
+        n_steps_forecast (int): Number of outputs y used at each training
         n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
 
     Returns:
@@ -26,6 +27,7 @@ def split_sequence(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
         i = n_steps_jump*i;
         end_ix = i + n_steps_input
 
+        # Once train data crosses time series length return   
         if end_ix+n_steps_forecast > len(sequence):
             break
         
@@ -37,14 +39,23 @@ def split_sequence(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
 
 
 def split_train_cv_forwardChaining(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
-    """ Returns the reversed String.
-
+    """ Returns sets to train and cross-validate a model using forward chaining technique
+    
     Parameters:
-        str1 (str):The string which is to be reversed.
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs X and Xcv used at each training
+        n_steps_forecast (int): Number of outputs y and ycv used at each training
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
 
     Returns:
-        reverse(str1):The string which gets reversed.   
-
+        X (2D array): Array of n_steps_input arrays used for training
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays used for training
+                      len(y[k]) = n_steps_forecast
+        Xcv (2D array): Array of n_steps_input arrays used for cross-validation
+                        len(Xcv[k]) = n_steps_input
+        ycv (2D array): Array of n_steps_forecast arrays used for cross-validation
+                        len(ycv[k]) = n_steps_forecast
     """
     X, y, Xcv, ycv = dict(), dict(), dict(), dict()
     j=2; # Tracks index of CV set at each train/val split
@@ -93,6 +104,24 @@ def split_train_cv_forwardChaining(sequence, n_steps_input, n_steps_forecast, n_
 
 
 def split_train_cv_kFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets to train and cross-validate a model using K-Fold technique
+    
+    Parameters:
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs X and Xcv used at each training
+        n_steps_forecast (int): Number of outputs y and ycv used at each training
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
+
+    Returns:
+        X (2D array): Array of n_steps_input arrays used for training
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays used for training
+                      len(y[k]) = n_steps_forecast
+        Xcv (2D array): Array of n_steps_input arrays used for cross-validation
+                        len(Xcv[k]) = n_steps_input
+        ycv (2D array): Array of n_steps_forecast arrays used for cross-validation
+                        len(ycv[k]) = n_steps_forecast
+    """
     X, y, Xcv, ycv = dict(), dict(), dict(), dict()
     j=2; # Tracks index of CV set at each train/val split
     theEnd = 0; # Flag to terminate function
@@ -151,7 +180,25 @@ def split_train_cv_kFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump
             
     return X, y, Xcv, ycv
 
-def split_train_cv_multipleKFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+def split_train_cv_groupKFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets to train and cross-validate a model using group K-Fold technique
+    
+    Parameters:
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs X and Xcv used at each training
+        n_steps_forecast (int): Number of outputs y and ycv used at each training
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
+
+    Returns:
+        X (2D array): Array of n_steps_input arrays used for training
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays used for training
+                      len(y[k]) = n_steps_forecast
+        Xcv (2D array): Array of n_steps_input arrays used for cross-validation
+                        len(Xcv[k]) = n_steps_input
+        ycv (2D array): Array of n_steps_forecast arrays used for cross-validation
+                        len(ycv[k]) = n_steps_forecast
+    """
     X, y, Xcv, ycv = dict(), dict(), dict(), dict()
     
     # Iterate through 5 train/val splits
@@ -201,11 +248,29 @@ def split_train_cv_multipleKFold(sequence, n_steps_input, n_steps_forecast, n_st
             
     return X, y, Xcv, ycv
 
-def didier_birthday():
-    print("4 June 1995")
-    return
-
 def split_train_cv_test_forwardChaining(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets to train, cross-validate and test a model using forward chaining technique
+    
+    Parameters:
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs X, Xcv and Xtest used at each training
+        n_steps_forecast (int): Number of outputs y, ycv, ytest used at each training
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
+
+    Returns:
+        X (2D array): Array of n_steps_input arrays used for training
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays used for training
+                      len(y[k]) = n_steps_forecast
+        Xcv (2D array): Array of n_steps_input arrays used for cross-validation
+                        len(Xcv[k]) = n_steps_input
+        ycv (2D array): Array of n_steps_forecast arrays used for cross-validation
+                        len(ycv[k]) = n_steps_forecast
+        Xtest (2D array): Array of n_steps_input arrays used for testing
+                          len(Xtest[k]) = n_steps_input
+        ytest (2D array): Array of n_steps_input arrays used for testing
+                          len(Xtest[k]) = n_steps_input
+    """
     X, y, Xcv, ycv, Xtest, ytest = dict(), dict(), dict(), dict(), dict(), dict()
     j=2; # Tracks index of CV set at each train/val/test split
     
@@ -263,6 +328,28 @@ def split_train_cv_test_forwardChaining(sequence, n_steps_input, n_steps_forecas
     return X, y, Xcv, ycv, Xtest, ytest
 
 def split_train_cv_test_kFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets to train, cross-validate and test a model using K-Fold technique
+    
+    Parameters:
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs X, Xcv and Xtest used at each training
+        n_steps_forecast (int): Number of outputs y, ycv, ytest used at each training
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
+
+    Returns:
+        X (2D array): Array of n_steps_input arrays used for training
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays used for training
+                      len(y[k]) = n_steps_forecast
+        Xcv (2D array): Array of n_steps_input arrays used for cross-validation
+                        len(Xcv[k]) = n_steps_input
+        ycv (2D array): Array of n_steps_forecast arrays used for cross-validation
+                        len(ycv[k]) = n_steps_forecast
+        Xtest (2D array): Array of n_steps_input arrays used for testing
+                          len(Xtest[k]) = n_steps_input
+        ytest (2D array): Array of n_steps_input arrays used for testing
+                          len(Xtest[k]) = n_steps_input
+    """
     X, y, Xcv, ycv, Xtest, ytest = dict(), dict(), dict(), dict(), dict(), dict()
     j=2;  # Tracks index of CV set at each train/val/test split
     theEnd = 0; # Flag to terminate function
@@ -336,7 +423,29 @@ def split_train_cv_test_kFold(sequence, n_steps_input, n_steps_forecast, n_steps
             
     return X, y, Xcv, ycv, Xtest, ytest
 
-def split_train_cv_test_multipleKFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+def split_train_cv_test_groupKFold(sequence, n_steps_input, n_steps_forecast, n_steps_jump):
+    """ Returns sets to train, cross-validate and test a model using group K-Fold technique
+    
+    Parameters:
+        sequence (array): Full training dataset
+        n_steps_input (int): Number of inputs X, Xcv and Xtest used at each training
+        n_steps_forecast (int): Number of outputs y, ycv, ytest used at each training
+        n_steps_jump (int): Number of sequence samples to be ignored between (X,y) sets
+
+    Returns:
+        X (2D array): Array of n_steps_input arrays used for training
+                      len(X[k]) = n_steps_input
+        y (2D array): Array of n_steps_forecast arrays used for training
+                      len(y[k]) = n_steps_forecast
+        Xcv (2D array): Array of n_steps_input arrays used for cross-validation
+                        len(Xcv[k]) = n_steps_input
+        ycv (2D array): Array of n_steps_forecast arrays used for cross-validation
+                        len(ycv[k]) = n_steps_forecast
+        Xtest (2D array): Array of n_steps_input arrays used for testing
+                          len(Xtest[k]) = n_steps_input
+        ytest (2D array): Array of n_steps_input arrays used for testing
+                          len(Xtest[k]) = n_steps_input
+    """
     X, y, Xcv, ycv, Xtest, ytest = dict(), dict(), dict(), dict(), dict(), dict()
     
     # Iterate through 5 train/val/test splits
