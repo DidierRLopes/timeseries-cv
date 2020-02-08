@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.lines import Line2D
 
-from TimeSeriesCrossValidation.splitTrainValTest import split_train_cv_forwardChaining 
+from TimeSeriesCrossValidation.splitTrain import split_train
+from TimeSeriesCrossValidation.splitTrainVal import *
 
 timeSeries = np.arange(31)
 print(timeSeries)
 
 
-X, y, Xcv, ycv = split_train_cv_forwardChaining(timeSeries, n_steps_input=4, n_steps_forecast=3, n_steps_jump=3)
+X, y, Xcv, ycv = split_train_val_forwardChaining(timeSeries, n_steps_input=4, n_steps_forecast=3, n_steps_jump=3)
 for j in np.arange(5):
     print("--------- SET %d ---------" % (j+1))
     print("X[%d] ="% (j+1), X[j])
