@@ -1,1 +1,3 @@
-__all__ = ['splitTrainValTest']
+__all__ = ['splitTrain', 
+            'splitTrainVal',
+            'splitTrainValTest']
