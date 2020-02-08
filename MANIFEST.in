@@ -4,7 +4,7 @@
 include *.txt
 
 # The tests
-recursive-include tests *.py
+recursive-include scripts *.py
 
 # The docs
 recursive-include doc *.rst
