@@ -7,8 +7,7 @@ setup(
     author='Didier Lopes',
     author_email='dro.lopes@campus.fct.unl.pt',
     # Needed to actually package something
-    #packages=['TimeSeriesCrossValidation'],
-    packages=find_packages(),
+    packages=['TimeSeriesCrossValidation.splitTrain'],
     # Needed for dependencies
     install_requires=['numpy'],
     # *strongly* suggested for sharing
