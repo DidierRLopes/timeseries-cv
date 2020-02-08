@@ -11,5 +11,4 @@ setup(
     license='LICENSE.txt',
     description='Implementation of Cross-Validation techniques (Forward Chaining, K-Fold, Group K-Fold) to Time-Series',
     long_description=open('README.rst').read(),
-    scripts=['scripts/testSplit.py']
 )
