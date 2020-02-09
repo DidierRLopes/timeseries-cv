@@ -2,7 +2,7 @@ This python package aims to implement Time-Series Cross Validation Techniques.
 
 The idea is given a training dataset, the package will split it into Train, Validation and Test sets, by means of either Forward Chaining, K-Fold or Group K-Fold.
 
-As parameters the user can not only select the number of inputs (n_steps_input) and outputs (n_steps_output), but also the number of samples (n_steps_jump) to jump in the data to train.
+As parameters the user can not only select the number of inputs (n_steps_input) and outputs (n_steps_forecast), but also the number of samples (n_steps_jump) to jump in the data to train.
 
 The best way to install the package is as follows:
 pip install git+https://github.com/DidierRLopes/TimeSeriesCrossValidation
@@ -10,7 +10,7 @@ pip install git+https://github.com/DidierRLopes/TimeSeriesCrossValidation
 -------------------------------------------------------------------------------
 Below you can find an example of the usage of each function for the following Time-Series:
 
-timeSeries = array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26)
+timeSeries = array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26])
 
 -------------------------------------------------------------------------------
 from TimeSeriesCrossValidation.splitTrainVal import split_train_val_forwardChaining
