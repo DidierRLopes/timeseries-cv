@@ -10,5 +10,5 @@ setup(
     version='0.1',
     license='LICENSE.txt',
     description='Implementation of Cross-Validation techniques (Forward Chaining, K-Fold, Group K-Fold) to Time-Series',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
 )
