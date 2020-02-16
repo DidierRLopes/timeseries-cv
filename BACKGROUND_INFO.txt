@@ -1,0 +1,1 @@
+This module was developed with co-autorship with Filipe Roberto Ramos (https://ciencia.iscte-iul.pt/authors/filipe-roberto-de-jesus-ramos/cv) for his phD thesis entitled "Modeling and Forecasting of Time-Series: A data science approach that compares classic methodologies with deep learning methodologies"

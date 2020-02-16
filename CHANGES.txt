@@ -1,2 +1,2 @@
 v0.1, 2019-01-26 -- Initial version
-v0.2. 1019-02-xx -- Python package goes public
+v0.2. 1019-02-16 -- Python package goes public
