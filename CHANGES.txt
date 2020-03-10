@@ -1,2 +1,3 @@
 v0.1, 2019-01-26 -- Initial version
-v0.2. 1019-02-16 -- Python package goes public
+v0.2. 2019-02-16 -- Python package goes public
+v0.3. 2019-03-10 -- Added split_train_variableInput function
