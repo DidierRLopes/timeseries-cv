@@ -63,7 +63,10 @@ def split_train_val_forwardChaining(sequence, numInputs, numOutputs, numJumps):
         ycv[j-2] = np.array(ycv_it)
         
         j+=1;
-            
+        
+    if (len(X)==0 or len(Xcv)==0):
+        print("The sequence provided does not has size enough to populate the return arrays")
+   
     return X, y, Xcv, ycv
 
 
@@ -139,8 +142,12 @@ def split_train_val_kFold(sequence, numInputs, numOutputs, numJumps):
         ycv[j-2] = np.array(ycv_it)
         
         j+=1;
+        
+    if (len(X)==0 or len(Xcv)==0):
+        print("The sequence provided does not has size enough to populate the return arrays")
             
     return X, y, Xcv, ycv
+
 
 def split_train_val_groupKFold(sequence, numInputs, numOutputs, numJumps):
     """ Returns sets to train and cross-validate a model using group K-Fold technique
@@ -205,5 +212,8 @@ def split_train_val_groupKFold(sequence, numInputs, numOutputs, numJumps):
         y[j] = np.array(y_it)
         Xcv[j] = np.array(Xcv_it)
         ycv[j] = np.array(ycv_it)
+        
+    if (len(X)==0 or len(Xcv)==0):
+        print("The sequence provided does not has size enough to populate the return arrays")
             
     return X, y, Xcv, ycv
