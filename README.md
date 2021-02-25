@@ -7,8 +7,9 @@ The idea is given a training dataset, the package will split it into Train, Vali
 As parameters the user can not only select the number of inputs (n_steps_input) and outputs (n_steps_forecast), but also the number of samples (n_steps_jump) to jump in the data to train.
 
 The best way to install the package is as follows:
+```
 pip install git+https://github.com/DidierRLopes/TimeSeriesCrossValidation
-
+```
 -------------------------------------------------------------------------------
 This can be seen more intuitively using the jupyter notebook: "example.ipynb"
 Below you can find an example of the usage of each function for the following Time-Series:
