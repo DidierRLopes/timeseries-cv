@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "timeseries-cv"
+version = "0.1.0"
+description = "Timeseries cross-validation for Neural Networks"
+authors = ["didier <dro.lopes@campus.fct.unl.pt>"]
+license = "MIT License"
+packages = [
+    { include = "timeseries-cv" },
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.20.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

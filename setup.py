@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='TimeSeriesCrossValidation',
+    name='timeseries-cv',
     url='https://github.com/DidierRLopes',
     author='Didier Rodrigues Lopes',
     author_email='dro.lopes@campus.fct.unl.pt',
