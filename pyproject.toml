@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "timeseries-cv"
-version = "0.1.3"
+version = "0.1.4"
 description = "Timeseries cross-validation for Neural Networks"
 authors = ["didier <dro.lopes@campus.fct.unl.pt>"]
 license = "MIT License"
 packages = [
-    { include = "timeseries-cv" },
+    { include = "tsxv" },
 ]
 readme = "README.md"
 repository = "https://github.com/DidierRLopes/timeseries-cv"
