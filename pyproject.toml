@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "timeseries-cv"
-version = "0.1.0"
+version = "0.1.1"
 description = "Timeseries cross-validation for Neural Networks"
 authors = ["didier <dro.lopes@campus.fct.unl.pt>"]
 license = "MIT License"
