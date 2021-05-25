@@ -18,8 +18,8 @@ The best way to install the package is as follows: `pip install timeseries-cv` a
       <li><a href="#split-train-val">Split Train Val</a></li>
       <li><a href="#split-train-val-test">Split Train Val Test</a></li>
     </ul>
-    <a href="#Citation">Citation</a>
   </li>
+  <li><a href="#Citation">Citation</a></li>
 </ol>
 
 
