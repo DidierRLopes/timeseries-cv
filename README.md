@@ -18,6 +18,7 @@ The best way to install the package is as follows: `pip install timeseries-cv` a
       <li><a href="#split-train-val">Split Train Val</a></li>
       <li><a href="#split-train-val-test">Split Train Val Test</a></li>
     </ul>
+    <a href="#Citation">Citation</a>
   </li>
 </ol>
 
@@ -87,7 +88,7 @@ X, y, Xcv, ycv, Xtest, ytest = split_train_val_test_forwardChaining(timeSeries, 
 
 <img width="744" alt="trainValTest - forwardChaining" src="https://user-images.githubusercontent.com/25267873/74094566-6fab1e00-4adb-11ea-810d-e085518c3cb5.png">
 
-### split_train_val_test_kFold
+#### split_train_val_test_kFold
 ```
 from tsxv.splitTrainValTest import split_train_val_test_kFold
 X, y, Xcv, ycv, Xtest, ytest = split_train_val_test_kFold(timeSeries, n_steps_input=4, n_steps_forecast=3, n_steps_jump=2)
@@ -95,10 +96,15 @@ X, y, Xcv, ycv, Xtest, ytest = split_train_val_test_kFold(timeSeries, n_steps_in
 
 <img width="745" alt="trainValTest - kFold" src="https://user-images.githubusercontent.com/25267873/74094570-73d73b80-4adb-11ea-94cd-5ab4d02c8cbf.png">
 
-### split_train_val_test_groupKFold
+#### split_train_val_test_groupKFold
 ```
 from tsxv.splitTrainValTest import split_train_val_test_groupKFold
 X, y, Xcv, ycv, Xtest, ytest = split_train_val_test_groupKFold(timeSeries, n_steps_input=4, n_steps_forecast=3, n_steps_jump=2)
 ```
 
 <img width="744" alt="trainValTest - groupKFold" src="https://user-images.githubusercontent.com/25267873/74094567-70dc4b00-4adb-11ea-994b-c3f1727f4b83.png">
+
+
+## Citation
+
+This module was developed with co-autorship with Filipe Roberto Ramos (https://ciencia.iscte-iul.pt/authors/filipe-roberto-de-jesus-ramos/cv) for his phD thesis entitled "Data Science in the Modeling and Forecasting of Financial timeseries: from Classic methodologies to Deep Learning". Submitted in 2021 to Instituto Universitário de Lisboa - ISCTE Business School, Lisboa, Portugal.
