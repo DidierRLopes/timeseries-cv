@@ -108,3 +108,16 @@ X, y, Xcv, ycv, Xtest, ytest = split_train_val_test_groupKFold(timeSeries, n_ste
 ## Citation
 
 This module was developed with co-autorship with Filipe Roberto Ramos (https://ciencia.iscte-iul.pt/authors/filipe-roberto-de-jesus-ramos/cv) for his phD thesis entitled "Data Science in the Modeling and Forecasting of Financial timeseries: from Classic methodologies to Deep Learning". Submitted in 2021 to Instituto Universitário de Lisboa - ISCTE Business School, Lisboa, Portugal.
+
+APA 
+
+`Ramos, F. (2021). Data Science na Modelação e Previsão de Séries Económico-financeiras: das Metodologias Clássicas ao Deep Learning. (PhD Thesis submitted, Instituto Universitário de Lisboa - ISCTE Business School, Lisboa, Portugal).`
+
+```
+@phdthesis{FRRamos2021,
+      AUTHOR = {Filipe R. Ramos},
+      TITLE = {Data Science na Modelação e Previsão de Séries Económico-financeiras: das Metodologias Clássicas ao Deep Learning},
+      PUBLISHER = {PhD Thesis submitted, Instituto Universitário de Lisboa - ISCTE Business School, Lisboa, Portugal},
+      YEAR =  {2021}
+}
+```
