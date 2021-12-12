@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "timeseries-cv"
-version = "0.1.4"
+version = "0.1.5"
 description = "Timeseries cross-validation for Neural Networks"
 authors = ["didier <dro.lopes@campus.fct.unl.pt>"]
 license = "MIT License"
@@ -11,8 +11,8 @@ readme = "README.md"
 repository = "https://github.com/DidierRLopes/timeseries-cv"
 
 [tool.poetry.dependencies]
-python = "^3.6"
-numpy = "~1.19.5,<1.20"
+python = "^3.7"
+numpy = "^1.21"
 
 [tool.poetry.dev-dependencies]
 
